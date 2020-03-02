@@ -1,0 +1,7 @@
+.jumbotron {
+    background-image: url("car.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: hard-light;
+    }
