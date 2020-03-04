@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:index, :show, :edit]
+  
   def index
     @users = User.order(id: :asc).page(params[:page]).per(10)
   end
@@ -24,9 +26,23 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    
+    if current_user == @user
+      if @user.update(user_params)
+        flash[:success] = "プロフィールを変更しました。"
+        redirect_to @user
+      else
+        flash.now[:danger] = "プロフィールの変更に失敗しました。"
+        render :edit
+      end
+    else
+      redirect_to root_url
+    end  
   end
   
   private
