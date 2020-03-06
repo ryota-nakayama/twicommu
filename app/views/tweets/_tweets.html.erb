@@ -1,8 +1,8 @@
 <ul class="list-unstyled">
   <% tweets.each do |tweet| %>
     <li class="media mb-3">
-      <% if @user.image? %>
-        <%= image_tag @user.image.thumb50.url, :class => "mw50" %>
+      <% if tweet.user.image? %>
+        <%= image_tag tweet.user.image.thumb50.url, :class => "mw50" %>
       <% else %>
         <%= image_tag "noimage.png", :size => "50x50" %>
       <% end %>
@@ -14,8 +14,8 @@
           <p><%= tweet.content %></p>
         </div>
         <div>
+          <%= link_to "詳細", tweet, class: "btn btn-primary btn-sm" %>
           <% if current_user == tweet.user %>
-            <%= link_to "詳細", tweet, class: "btn btn-primary btn-sm" %>
             <%= link_to "削除", tweet, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: "btn btn-danger btn-sm" %>
           <% end %>  
         </div>
