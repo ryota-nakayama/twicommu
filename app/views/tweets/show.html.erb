@@ -1,0 +1,24 @@
+<div class="text-center mb-4">
+  <h1>ツイート詳細</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>ツイート内容<br>
+              <% if current_user == @tweet.user %>
+                <%= link_to "ツイート編集", edit_tweet_path(@tweet), class: "btn btn-primary btn-sm" %>
+              <% end %>  
+          </th>
+          <td><%= @tweet.content %></td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <td>コメント内容</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

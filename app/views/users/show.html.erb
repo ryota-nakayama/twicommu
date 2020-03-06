@@ -5,13 +5,11 @@
         <h3><%= @user.name %></h3>
       </div>
       <div class="card-body text-center">
-        <%= form_with(model: @user, local: true) do |f| %>
           <% if @user.image? %>
             <%= image_tag @user.image.thumb.url, :class => "mw50" %>
           <% else %>
-            <%= image_tag("noimage.png") %>
+            <%= image_tag "noimage.png" %>
           <% end %>
-        <% end %>  
       </div>
     </div>
   </aside>
@@ -19,16 +17,17 @@
   <div class="col-sm-8">
     <p><<自己紹介>></p>
     <p><%= @user.bio %></p>
-    <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+    <%= link_to "プロフィールを編集", edit_user_path(current_user) %>
   </div>
   
   
-  <div class="offset-sm-1 col-sm-10">
+  <div class="offset-sm-1 col-sm-10 mt-4">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">ツイート</a></li>
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">ツイート  <span class="badge badge-secondary"><%= @count_tweets %></span></a></li>
       <li class="nav-item"><a href="#" class="nav-link">フォロー</a></li>
       <li class="nav-item"><a href="#" class="nav-link">フォロワー</a></li>
       <li class="nav-item"><a href="#" class="nav-link">お気に入り</a></li>
     </ul>
+    <%= render "tweets/tweets", tweets: @tweets %>
   </div>
 </div>
