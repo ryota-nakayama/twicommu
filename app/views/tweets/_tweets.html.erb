@@ -15,6 +15,7 @@
         </div>
         <div>
           <%= link_to "詳細", tweet, class: "btn btn-primary btn-sm" %>
+          <%= render "favorites/favo_button", tweet: tweet %>
           <% if current_user == tweet.user %>
             <%= link_to "削除", tweet, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: "btn btn-danger btn-sm" %>
           <% end %>  
