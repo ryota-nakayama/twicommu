@@ -7,16 +7,27 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <th>ツイート内容<br>
-              <% if current_user == @tweet.user %>
-                <%= link_to "ツイート編集", edit_tweet_path(@tweet), class: "btn btn-primary btn-sm" %>
-              <% end %>  
+          <th>
+            ツイート内容<br>
+            <% if current_user == @tweet.user %>
+              <%= link_to "ツイート編集", edit_tweet_path(@tweet), class: "btn btn-primary btn-sm" %>
+            <% end %>  
           </th>
           <td><%= @tweet.content %></td>
         </tr>
         <tr>
-          <th>コメント</th>
-          <td>コメント内容</td>
+          <th>
+            コメント<br>
+              <%= link_to "コメントする", tweet_comment_path(@tweet), class: "btn btn-primary btn-sm" %>
+          </th>
+          <td>
+            <% @comments.each do |c| %>
+              <div>
+                <%= c.comment %>
+                <hr>
+              </div>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
